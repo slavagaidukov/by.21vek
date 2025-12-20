@@ -10,7 +10,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class AddItemToCartUserIsNotLoggerIn extends BaseTest {
-
+//comment
     private final static String ITEM_NAME = "Топливный фильтр Knecht/Mahle KL169/4D";
 
     @Test
