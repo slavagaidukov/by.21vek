@@ -7,7 +7,6 @@ import ui.elements.Button;
 import ui.elements.Element;
 import ui.pages.BasePage;
 import ui.pages.FavoriteItemsPage;
-import ui.pages.MainPage;
 
 public class AccountPopup extends BaseComponent {
 
@@ -17,14 +16,14 @@ public class AccountPopup extends BaseComponent {
     @FindBy(xpath = ".//div[text()='Выход']")
     private Button logoutButton;
 
-    @FindBy(xpath = ".//div[text()='Избранные товары']/following-sibling::span")
+    @FindBy(xpath = ".//div[@data-testid='profile-favorite-counter']/span")
     private Element favoriteItemsCount;
 
     @FindBy(xpath = ".//div[text()='Избранные товары']")
     private Button favoriteItemsButton;
 
     public AccountPopup(BasePage page) {
-        super("Account popup", page, By.xpath("//div[@id='userToolsDropDown']/div"));
+        super("Account popup", page, By.xpath(".//div[@data-testid='userToolsDropDown']"));
     }
 
     public FavoriteItemsPage openFavoriteItemsPage() {

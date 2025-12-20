@@ -3,29 +3,29 @@ package ui.pages;
 import lombok.Data;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import ui.components.HeaderComponent;
 import ui.elements.Button;
+import ui.elements.CustomElement;
 import ui.elements.Element;
 
 @Data
 public class ItemPage extends BaseMainPage{
 
-    @FindBy(id = "favoriteOldProductCard")
+    @FindBy(xpath = ".//button[@aria-label='В избранное']")
     private Button favouriteItemsButton;
 
-    @FindBy(xpath = ".//span[text()='Удалить из избранного']")
-    private Button removeFromFavoritesButton;
+    @FindBy(xpath = ".//button[@aria-label='В избранном']")
+    private Button removeItemFromFavouritesButton;
 
-    @FindBy(xpath = ".//button[text()='В корзину']")
+    @FindBy(xpath = ".//button[@aria-label='Добавить в корзину']")
     private Button addItemToCartButton;
 
-    @FindBy(xpath = ".//a[text()='В корзине']")
+    @FindBy(xpath = ".//div[text()='В корзине']")
     private Button itemInCartButton;
 
-    @FindBy(css = "span.item__price span")
+    @FindBy(xpath = ".//span[contains(@class,'ProductPrice')]")
     private Element priceElement;
 
-    @FindBy(css = "div.content__header h1")
+    @FindBy(css = "div[id='content'] h1")
     private Element itemNameElement;
 
     public ItemPage(WebDriver driver) {
@@ -37,7 +37,7 @@ public class ItemPage extends BaseMainPage{
     }
 
     public double getPrice() {
-        return Double.parseDouble(priceElement.waitElement().getAttribute("data-price"));
+        return Double.parseDouble(priceElement.getText().replaceAll("\\s(.*)", "").replace(",", "."));
     }
 
     public boolean isPriceVisible() {
@@ -45,7 +45,7 @@ public class ItemPage extends BaseMainPage{
     }
 
     public boolean isRemoveFromFavoritesButtonVisible() {
-        return removeFromFavoritesButton.isVisible(0);
+        return  favouriteItemsButton.isVisible() && favouriteItemsButton.getProperty("class").contains("pink-tentiary");
     }
 
     public String getItemName() {
@@ -55,7 +55,7 @@ public class ItemPage extends BaseMainPage{
     public void addItemToCart() {
         getLogger().info("Add item to cart");
         addItemToCartButton.click();
-        addItemToCartButton.waitForInvisibility();
+        itemInCartButton.waitForVisibility();
     }
 
     public CartPage openCartPageWithAddedItem() {
@@ -69,11 +69,14 @@ public class ItemPage extends BaseMainPage{
     public void addItemToFavorites() {
         getLogger().info("Add item to favorites");
         favouriteItemsButton.click();
-        removeFromFavoritesButton.waitElement();
+        favouriteItemsButton.waitPropertyContains("class", "pink-tentiary", CustomElement.getElementTimeout());
     }
 
     public boolean isPossibleToAddItemToFavorites() {
-        return favouriteItemsButton.isVisible() && favouriteItemsButton.getText().equals("Добавить в избранное");
+        return favouriteItemsButton.isVisible();
     }
 
+    public boolean isPossibleToRemoveItemFromFavorites() {
+        return removeItemFromFavouritesButton.isVisible();
+    }
 }

@@ -6,7 +6,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 import ui.components.popups.AccountPopup;
-import ui.pages.CartPage;
 import ui.pages.FavoriteItemsPage;
 import ui.pages.ItemPage;
 import ui.pages.MainPage;
@@ -56,7 +55,7 @@ public class AddItemToFavoritesUserIsLoggedIn extends BaseTest {
         assertTrue(favoriteItemsPage.itemExists(ITEM), "Verify item visibility");
         assertEquals(favoriteItemsPage.getItemPrice(ITEM), price,
                 "Verify item price on Favorite Items page");
-        assertTrue(favoriteItemsPage.isPossibleToRemoveItem(ITEM),
+        assertTrue(favoriteItemsPage.isPossibleToRemoveItemFromFavorites(ITEM),
                 "Verify if it is possible to remove item from favorites");
 
         //6. Remove item from favorites

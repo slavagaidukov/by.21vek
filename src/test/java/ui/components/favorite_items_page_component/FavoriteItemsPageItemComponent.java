@@ -9,15 +9,15 @@ import ui.pages.BasePage;
 
 public class FavoriteItemsPageItemComponent extends BaseComponent {
 
-    @FindBy(xpath = ".//div[contains(@class,'OldProductCard_price')]")
+    @FindBy(xpath = ".//span[@data-testid='card-current-price']")
     private Element priceElement;
 
-    @FindBy(xpath = ".//button[text()='Удалить из списка']")
+    @FindBy(xpath = ".//button[@aria-label='Добавлено в избранное']")
     private Button removeItemButton;
 
     public FavoriteItemsPageItemComponent(BasePage page, String item) {
         super("Favorite items page item " + item + " component", page,
-                By.xpath(".//div[contains(@class,'OldProductCard_card__')][.//a[text()='" + item + "']]"));
+                By.xpath(".//div[contains(@class,'Favorite_product')][.//span[text()='" + item + "']]"));
     }
 
     public double getPrice() {
@@ -31,6 +31,6 @@ public class FavoriteItemsPageItemComponent extends BaseComponent {
 
     public void remove() {
         removeItemButton.click();
-        removeItemButton.waitForInvisibility();
+        removeItemButton.waitProperty("aria-label", "Добавить в избранное");
     }
 }

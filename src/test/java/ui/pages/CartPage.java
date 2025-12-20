@@ -9,14 +9,21 @@ import ui.elements.Element;
 
 public class CartPage extends BaseMainPage {
 
-    @FindBy(xpath = "//div[@data-testid='basket-tab']/span[text()='Корзина']")
+    @FindBy(xpath = ".//div[@class='Tabs-module__inner'][.//span[text()='Корзина']]")
     private Element cartLabel;
+
+    @FindBy(xpath = ".//button[normalize-space(text())='Закрыть']")
+    private Element closeUnicefNotificationButton;
 
     public CartPage(WebDriver driver) {
         super(driver, "Cart page");
     }
 
     public boolean isOpened() {
+        if (closeUnicefNotificationButton.isVisible()) {
+            closeUnicefNotificationButton.click();
+            closeUnicefNotificationButton.waitForInvisibility();
+        }
         return cartLabel.isVisibleWithPageTimeout();
     }
 

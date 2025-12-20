@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import ui.components.popups.AccountPopup;
 import ui.elements.Button;
-import ui.elements.CustomElement;
 import ui.elements.Edit;
 import ui.elements.Element;
 import ui.pages.BasePage;
@@ -21,7 +20,7 @@ public class HeaderComponent extends BaseComponent {
     @FindBy(xpath = ".//button[contains(@class,'Search_clearBtn__')]")
     private Button clearSearchButton;
 
-    @FindBy(css = "span.headerCartCount")
+    @FindBy(xpath = ".//div[@data-testid='header-count']/span")
     private Element itemsCountInCartElement;
 
     @FindBy(css = "span.userToolsText")
@@ -54,6 +53,7 @@ public class HeaderComponent extends BaseComponent {
 
     public void searchByInfo(String info) {
         getPage().getLogger().info("Search by info: " + info);
+        searchEdit.clearUsingKeys();
         searchEdit.set(info);
         searchEdit.click();
     }

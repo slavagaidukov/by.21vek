@@ -10,13 +10,13 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class AddItemToCartUserIsNotLoggerIn extends BaseTest {
-//comment
-    private final static String ITEM_NAME = "Топливный фильтр Knecht/Mahle KL169/4D";
+
+    private final static String ITEM_NAME = "Воздушный фильтр Filtron AK362/1";
 
     @Test
     public void test() {
         //1. Open main page and search by item
-        //(e.x.: Масляный фильтр Bosch F026407072)
+        //(e.x.: Воздушный фильтр Filtron AK362/1)
         MainPage mainPage = openApp();
 
         mainPage.getHeaderComponent().searchByInfo(ITEM_NAME);

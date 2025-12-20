@@ -42,6 +42,20 @@ public class CustomElement {
         }
     }
 
+    public boolean waitPropertyContains(String propertyName, String value, int timeout) {
+        final long start = new Date().getTime();
+        do {
+            try {
+                String actValue = webElement.getAttribute(propertyName);
+                if (actValue != null && actValue.contains(value)) return true;
+            } catch (Throwable ignore) {
+                TestUtils.sleep(100);
+            }
+        } while (new Date().getTime() - start < timeout * 1000);
+
+        return false;
+    }
+
     public void click() {
         waitElement().click();
     }
@@ -53,6 +67,10 @@ public class CustomElement {
 
     public void waitForInvisibility() {
         wait.until(ExpectedConditions.invisibilityOf(webElement));
+    }
+
+    public void waitForVisibility() {
+        wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
     public boolean isVisible(int timeout) {
@@ -120,5 +138,9 @@ public class CustomElement {
 
     public String getProperty(String propertyName) {
         return webElement.getAttribute(propertyName);
+    }
+
+    public static int getElementTimeout() {
+        return ELEMENT_TIMEOUT;
     }
 }

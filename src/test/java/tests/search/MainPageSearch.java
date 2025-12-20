@@ -10,7 +10,7 @@ public class MainPageSearch extends BaseTest {
     private final static String ITEM_NAME_1 = "Топливный фильтр Knecht/Mahle KL169/4D";
     private final static String ITEM_NAME_2 = "Салонный фильтр Filtron K1160A-2X (угольный, 2шт)";
 
-    private final static String EXPECTED_CATEGORY = "Фильтры топливные";
+    private final static String EXPECTED_CATEGORY = "Фильтры топливные Knecht/Mahle";
     @Test
     public void test() {
         //1. Open main page and search by item

@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 import ui.components.popups.AccountPopup;
-import ui.pages.CartPage;
 import ui.pages.FavoriteItemsPage;
 import ui.pages.ItemPage;
 import ui.pages.MainPage;
@@ -14,7 +13,7 @@ import static org.testng.Assert.assertTrue;
 
 public class AddItemToFavoritesUserIsNotLoggedIn extends BaseTest {
 
-    private final static String ITEM_NAME = "Топливный фильтр Knecht/Mahle KL169/4D";
+    private final static String ITEM_NAME = "Воздушный фильтр Filtron AP134/10";
 
     @Test
     public void test() {
@@ -33,10 +32,8 @@ public class AddItemToFavoritesUserIsNotLoggedIn extends BaseTest {
         //3. Add to favorites
         itemPage.addItemToFavorites();
 
-        //Item is added to favorites. Is possible to remove from favorites
-        //It is possible to remove item from favorites
-        assertTrue(itemPage.isRemoveFromFavoritesButtonVisible(),
-                "Verify if it is possible to remove item from favorites");
+        //Item is added to favorites. It is possible to remove item from favorites
+        assertTrue(itemPage.isPossibleToRemoveItemFromFavorites(), "Verify if it possible to remove item from favorites");
 
         //4. Open account popup
         AccountPopup accountPopup = itemPage.getHeaderComponent().openAccountPopup();
@@ -52,13 +49,17 @@ public class AddItemToFavoritesUserIsNotLoggedIn extends BaseTest {
         assertTrue(favoriteItemsPage.itemExists(ITEM_NAME), "Verify item visibility");
         assertEquals(favoriteItemsPage.getItemPrice(ITEM_NAME), price,
                 "Verify item price on Favorite Items page");
-        assertTrue(favoriteItemsPage.isPossibleToRemoveItem(ITEM_NAME),
-                "Verify if it is possible to remove item from favorites");
+        assertTrue(favoriteItemsPage.isPossibleToRemoveItemFromFavorites(ITEM_NAME), "Verify if it possible to remove item from favorites");
 
         //6. Remove item from favorites
         favoriteItemsPage.removeItem(ITEM_NAME);
 
         //Favorites list is empty
+        favoriteItemsPage.returnToMainPage();
+
+        mainPage.getHeaderComponent().openAccountPopup();
+        accountPopup.openFavoriteItemsPage();
+
         assertTrue(favoriteItemsPage.isNoItemsLabelVisible(), "Verify if no items label is visible");
 
         //7. Open accounts popup
