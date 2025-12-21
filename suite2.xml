@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="sequential">
+    <test name="sequential">
+        <classes>
+            <class name="tests.adding_to_cart.AddItemToCartUserIsLoggedIn"></class>
+            <class name="tests.adding_to_cart.AddItemToNotEmptyCart"></class>
+            <class name="tests.adding_to_favorites.AddItemToFavoritesUserIsLoggedIn"></class>
+            <class name="tests.removing_from_cart.RemoveItemFromCartUserIsLoggedIn"></class>
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->
