@@ -10,12 +10,11 @@ import ui.pages.FavoriteItemsPage;
 import ui.pages.ItemPage;
 import ui.pages.MainPage;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class AddItemToFavoritesUserIsLoggedIn extends BaseTest {
 
-    private final static String ITEM = "Топливный фильтр Knecht/Mahle KL169/4D";
+    private final static String ITEM = "Воздушный фильтр Filtron AK362/1";
 
     private User defaultUser = User.getDefaultUser();
     @Test
@@ -39,7 +38,7 @@ public class AddItemToFavoritesUserIsLoggedIn extends BaseTest {
 
         //Item is added to favorites. Star icon become red
         //It is possible to remove item from favorites
-        assertTrue(itemPage.isRemoveFromFavoritesButtonVisible(),
+        assertTrue(itemPage.isPossibleToRemoveItemFromFavorites(),
                 "Verify if it is possible to remove item from favorites");
 
         //4. Open account popup
@@ -62,7 +61,13 @@ public class AddItemToFavoritesUserIsLoggedIn extends BaseTest {
         favoriteItemsPage.removeItem(ITEM);
 
         //Favorites list is empty
-        assertTrue(favoriteItemsPage.isNoItemsLabelVisible(), "Verify if no items label is visible");
+        favoriteItemsPage.returnToMainPage();
+
+        mainPage.getHeaderComponent().openAccountPopup().openFavoriteItemsPage();
+
+        //Favorites list is empty
+        assertTrue(favoriteItemsPage.isNoItemsLabelVisible(), "Verify if items are not visible");
+        assertFalse(favoriteItemsPage.itemExists(ITEM), "Verify if favorites list is empty");
 
         //7. Open accounts popup
         favoriteItemsPage.getHeaderComponent().openAccountPopup();

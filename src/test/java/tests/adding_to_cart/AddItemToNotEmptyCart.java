@@ -12,7 +12,7 @@ import static org.testng.Assert.*;
 
 public class AddItemToNotEmptyCart extends BaseTest {
 
-    private final static String ITEM_NAME_1 = "Салонный фильтр Filtron K1160A-2X (угольный, 2шт)";
+    private final static String ITEM_NAME_1 = "Салонный фильтр Filtron K1078A (угольный)";
     private final static String ITEM_NAME_2 = "Воздушный фильтр Filtron AK362/1";
 
     private User defaultUser = User.getDefaultUser();

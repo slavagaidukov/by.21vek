@@ -21,7 +21,7 @@ public class LoginPopup extends BaseComponent {
 
     public LoginPopup(BasePage page) {
         super("Login popup", page,
-                By.xpath(".//div[contains(@class,'styles_modalWrapper')][./div/button[@data-testid='modalCloseButton']]"));
+                By.xpath(".//div[@data-testid='modal']"));
     }
 
     public void doLogin(User user) {

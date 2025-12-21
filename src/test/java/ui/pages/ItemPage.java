@@ -44,10 +44,6 @@ public class ItemPage extends BaseMainPage{
         return priceElement.isVisible(0);
     }
 
-    public boolean isRemoveFromFavoritesButtonVisible() {
-        return  favouriteItemsButton.isVisible() && favouriteItemsButton.getProperty("class").contains("pink-tentiary");
-    }
-
     public String getItemName() {
         return itemNameElement.getText();
     }

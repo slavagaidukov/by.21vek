@@ -15,7 +15,7 @@ import static org.testng.Assert.assertTrue;
 
 public class AddItemToCartUserIsLoggedIn extends BaseTest {
 
-    private final static String EXPECTED_TEXT_FROM_SEARCH = "Поиск товаров";
+    private final static String EXPECTED_TEXT_FROM_SEARCH = "Поиск по миллионам товаров";
     private final static String ITEM_NAME = "Воздушный фильтр Filtron AK362/1";
 
     private User defaultUser = User.getDefaultUser();
@@ -27,7 +27,7 @@ public class AddItemToCartUserIsLoggedIn extends BaseTest {
 
         mainPage.loginAsUser(defaultUser);
 
-        //User is successfully logged in. Search field with text: 'Поиск товаров' is visible
+        //User is successfully logged in. Search field with text: 'Поиск по миллионам товаров' is visible
         assertEquals(mainPage.getHeaderComponent().getTextFromSearch(), EXPECTED_TEXT_FROM_SEARCH, "Verify text into search field");
 
         //2. Input in search field item name
