@@ -2,18 +2,15 @@ package ui.pages;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Value;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import ui.elements.Element;
 import ui.elements.ElementsDecorator;
 
 import java.io.File;
@@ -31,7 +28,7 @@ public abstract class BasePage {
 
     protected Logger logger;
 
-    private final static int WAITER_TIMEOUT = 5;
+    private final static int WAIT_TIMEOUT_SECONDS = 5;
 
     protected WebDriver driver;
     protected WebDriverWait wait;
@@ -39,7 +36,7 @@ public abstract class BasePage {
 
     public BasePage (WebDriver driver, String pageName) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(WAITER_TIMEOUT));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS));
         this.pageName = pageName;
         this.logger = LogManager.getLogger();
         ElementLocatorFactory factory = new DefaultElementLocatorFactory(driver);

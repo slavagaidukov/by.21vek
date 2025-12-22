@@ -1,7 +1,7 @@
 package tests.adding_to_cart;
 
 import data.User;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 import ui.pages.CartPage;
@@ -70,8 +70,8 @@ public class AddItemToNotEmptyCart extends BaseTest {
         System.out.println("Test passed");
     }
 
-    @AfterClass
-    public void tearDown() {
+    @AfterMethod
+    public void cleanUp() {
         MainPage mainPage = openApp();
 
         mainPage.loginAsUser(defaultUser);
@@ -85,7 +85,5 @@ public class AddItemToNotEmptyCart extends BaseTest {
         if (cartPage.isItemVisible(ITEM_NAME_2)) {
             cartPage.removeItem(ITEM_NAME_2);
         }
-
-        closeBrowser();
     }
 }

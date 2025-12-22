@@ -2,7 +2,7 @@ package tests.adding_to_favorites;
 
 import data.User;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 import ui.components.popups.AccountPopup;
@@ -85,8 +85,8 @@ public class AddItemToFavoritesUserIsLoggedIn extends BaseTest {
         System.out.println("Test passed");
     }
 
-    @AfterClass
-    public void tearDown() {
+    @AfterMethod
+    public void cleanUp() {
         MainPage mainPage = openApp();
 
         mainPage.loginAsUser(defaultUser);
@@ -98,7 +98,5 @@ public class AddItemToFavoritesUserIsLoggedIn extends BaseTest {
         if (favoriteItemsPage.itemExists(ITEM)) {
             favoriteItemsPage.removeItem(ITEM);
         }
-
-        closeBrowser();
     }
 }

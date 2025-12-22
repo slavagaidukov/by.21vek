@@ -2,7 +2,7 @@ package tests.removing_from_cart;
 
 import data.User;
 import helpers.TestUtils;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 import ui.pages.CartPage;
@@ -59,7 +59,6 @@ public class RemoveItemFromCartUserIsLoggedIn extends BaseTest {
 
         //Main page is opened. Cart element without digit '1' is visible
 
-        //
         assertEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 0,
                 "Verify if item is added");
 
@@ -67,8 +66,8 @@ public class RemoveItemFromCartUserIsLoggedIn extends BaseTest {
         System.out.println("Test passed");
     }
 
-    @AfterClass
-    public void tearDown() {
+    @AfterMethod
+    public void cleanUp() {
         MainPage mainPage = openApp();
 
         mainPage.loginAsUser(defaultUser);
@@ -78,7 +77,5 @@ public class RemoveItemFromCartUserIsLoggedIn extends BaseTest {
         if (cartPage.isItemVisible(ITEM_NAME)) {
             cartPage.removeItem(ITEM_NAME);
         }
-
-        closeBrowser();
     }
 }
