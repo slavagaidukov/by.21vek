@@ -1,7 +1,5 @@
 package ui.pages;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
@@ -18,13 +16,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-import static org.testng.Assert.assertTrue;
-
-@Data
-@NoArgsConstructor
 public abstract class BasePage {
-    private final static String SCREENSHOTS_PATH = "C:\\Users\\gaydukovva\\IdeaProjects\\by.21vek\\src\\main\\resources\\screenshots";
+    private static final String SCREENSHOTS_DIR = "target/screenshots";
 
     protected Logger logger;
 
@@ -32,7 +28,7 @@ public abstract class BasePage {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
-    private String pageName;
+    private final String pageName;
 
     public BasePage (WebDriver driver, String pageName) {
         this.driver = driver;
@@ -47,18 +43,37 @@ public abstract class BasePage {
     public abstract boolean isOpened();
 
     public void assertIsOpened() {
-        assertTrue(isOpened(), pageName + " was opened");
-        getLogger().info(pageName + " was opened");
+        if (!isOpened()) {
+            takeScreenshot("PageNotOpened_" + pageName);
+            throw new AssertionError(pageName + " was not opened");
+        }
+        logger.info(pageName + " was opened successfully");
     }
 
-    public void takeScreenshotAndSaveInScreenshotsFolder() {
-
-        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        File file = new File(SCREENSHOTS_PATH + scrFile.getName());
+    public void takeScreenshot(String screenshotName) {
         try {
-            Files.copy(scrFile.toPath(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            File screenshotsDir = new File(SCREENSHOTS_DIR);
+            if (!screenshotsDir.exists()) {
+                screenshotsDir.mkdirs();
+            }
+
+            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+            String fileName = screenshotName + "_" + timestamp + ".png";
+            File destination = new File(screenshotsDir, fileName);
+
+            File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            Files.copy(screenshot.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            logger.info("Screenshot saved: " + destination.getAbsolutePath());
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Failed to save screenshot: " + e.getMessage(), e);
         }
+    }
+
+    public Logger getLogger() {
+        return logger;
+    }
+
+    public WebDriver getDriver() {
+        return driver;
     }
 }

@@ -1,9 +1,6 @@
 package ui.pages;
 
 import data.User;
-import helpers.TestUtils;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import ui.components.HeaderComponent;
@@ -12,8 +9,6 @@ import ui.components.popups.LoginPopup;
 import ui.elements.Button;
 import ui.elements.Element;
 
-@Data
-@NoArgsConstructor
 public abstract class BaseMainPage extends BasePage {
 
     @FindBy(css = "div.logotype")
@@ -50,5 +45,9 @@ public abstract class BaseMainPage extends BasePage {
             accountButton.click();
             accountPopup.getComponentElement().waitForInvisibility();
         }
+    }
+
+    public HeaderComponent getHeaderComponent() {
+        return headerComponent;
     }
 }
