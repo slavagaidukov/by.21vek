@@ -12,7 +12,7 @@ import java.util.Date;
 public class CustomElement {
 
     private final static int ELEMENT_TIMEOUT = 5;
-    private final static int PAGE_TIMEOUT_TIMEOUT = 10;
+    private final static int PAGE_LOAD_TIMEOUT = 10;
 
     protected WebElement webElement;
     protected WebDriver driver;
@@ -111,7 +111,7 @@ public class CustomElement {
 
     public boolean isVisibleWithPageTimeout() {
         try {
-            new WebDriverWait(driver, Duration.ofSeconds(PAGE_TIMEOUT_TIMEOUT)).
+            new WebDriverWait(driver, Duration.ofSeconds(PAGE_LOAD_TIMEOUT)).
                     until(ExpectedConditions.visibilityOf(webElement));
             return true;
         } catch (WebDriverException e) {

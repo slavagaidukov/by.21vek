@@ -21,7 +21,7 @@ public class FavoriteItemsPageItemComponent extends BaseComponent {
     }
 
     public double getPrice() {
-        return Double.parseDouble(priceElement.getText().
+        return Double.parseDouble(priceElement.getText().replaceAll("\n", "").
                 replace(",", ".").replace("р.", "").trim());
     }
 

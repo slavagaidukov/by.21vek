@@ -14,19 +14,19 @@ public abstract class BaseTest {
 
     private static final Logger logger = LogManager.getLogger(BaseTest.class);
 
-    private WebDriver driver;
+    private ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     @BeforeMethod
     public void setUp() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        driver.set(new ChromeDriver());
+        driver.get().manage().window().maximize();
         logger.info("Browser started and maximized");
     }
 
     protected MainPage openApp() {
-        driver.get(BASE_URL);
-        MainPage mainPage = new MainPage(driver);
+        driver.get().get(BASE_URL);
+        MainPage mainPage = new MainPage(driver.get());
         mainPage.assertIsOpened();
         if (mainPage.isAcceptCookiesButtonVisible()) {
             mainPage.acceptCookies();
@@ -38,7 +38,7 @@ public abstract class BaseTest {
     @AfterMethod
     public void tearDown() {
         if (driver != null) {
-            driver.quit();
+            driver.get().quit();
             logger.info("Browser closed");
         }
     }

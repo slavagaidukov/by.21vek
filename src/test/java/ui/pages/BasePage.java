@@ -1,5 +1,6 @@
 package ui.pages;
 
+import lombok.Getter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
@@ -22,10 +23,12 @@ import java.time.format.DateTimeFormatter;
 public abstract class BasePage {
     private static final String SCREENSHOTS_DIR = "target/screenshots";
 
+    @Getter
     protected Logger logger;
 
     private final static int WAIT_TIMEOUT_SECONDS = 5;
 
+    @Getter
     protected WebDriver driver;
     protected WebDriverWait wait;
     private final String pageName;
@@ -67,13 +70,5 @@ public abstract class BasePage {
         } catch (IOException e) {
             logger.error("Failed to save screenshot: " + e.getMessage(), e);
         }
-    }
-
-    public Logger getLogger() {
-        return logger;
-    }
-
-    public WebDriver getDriver() {
-        return driver;
     }
 }
