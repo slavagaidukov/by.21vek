@@ -8,7 +8,7 @@ import ui.pages.MainPage;
 
 import static org.testng.Assert.*;
 
-public class RemoveItemFromCartUserIsNotLoggedIn extends BaseTest {
+public class RemoveItemFromCartUserIsNotLoggedInTest extends BaseTest {
 
     private final static String ITEM_NAME = "Воздушный фильтр Filtron AK362/1";
 

@@ -3,10 +3,10 @@
 <suite name="parallel">
     <test name="parallel Tests" parallel="classes" thread-count="2">
         <classes>
-            <class name="tests.adding_to_cart.AddItemToCartUserIsNotLoggerIn"></class>
-            <class name="tests.adding_to_favorites.AddItemToFavoritesUserIsNotLoggedIn"></class>
-            <class name="tests.removing_from_cart.RemoveItemFromCartUserIsNotLoggedIn"></class>
-            <class name="tests.search.MainPageSearch"></class>
+            <class name="tests.adding_to_cart.AddItemToCartUserIsNotLoggerInTest"></class>
+            <class name="tests.adding_to_favorites.AddItemToFavoritesUserIsNotLoggedInTest"></class>
+            <class name="tests.removing_from_cart.RemoveItemFromCartUserIsNotLoggedInTest"></class>
+            <class name="tests.search.MainPageSearchTest"></class>
         </classes>
     </test>
 </suite> <!-- Suite -->

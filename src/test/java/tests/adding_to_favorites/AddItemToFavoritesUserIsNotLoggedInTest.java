@@ -11,7 +11,7 @@ import ui.pages.MainPage;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class AddItemToFavoritesUserIsNotLoggedIn extends BaseTest {
+public class AddItemToFavoritesUserIsNotLoggedInTest extends BaseTest {
 
     private final static String ITEM_NAME = "Воздушный фильтр Filtron AP134/10";
 

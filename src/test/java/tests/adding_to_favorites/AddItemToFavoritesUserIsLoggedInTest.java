@@ -12,7 +12,7 @@ import ui.pages.MainPage;
 
 import static org.testng.Assert.*;
 
-public class AddItemToFavoritesUserIsLoggedIn extends BaseTest {
+public class AddItemToFavoritesUserIsLoggedInTest extends BaseTest {
 
     private final static String ITEM = "Воздушный фильтр Filtron AK362/1";
 

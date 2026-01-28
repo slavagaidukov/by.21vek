@@ -12,7 +12,7 @@ import ui.pages.MainPage;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 
-public class RemoveItemFromCartUserIsLoggedIn extends BaseTest {
+public class RemoveItemFromCartUserIsLoggedInTest extends BaseTest {
 
     private final static String ITEM_NAME = "Воздушный фильтр Filtron AK362/1";
 

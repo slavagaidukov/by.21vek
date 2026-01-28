@@ -6,7 +6,7 @@ import ui.pages.MainPage;
 
 import static org.testng.Assert.*;
 
-public class MainPageSearch extends BaseTest {
+public class MainPageSearchTest extends BaseTest {
     private final static String ITEM_NAME_1 = "Топливный фильтр Knecht/Mahle KL572";
     private final static String ITEM_NAME_2 = "Салонный фильтр Filtron K1160A-2X (угольный, 2шт)";
 

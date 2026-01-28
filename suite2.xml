@@ -3,10 +3,10 @@
 <suite name="sequential">
     <test name="sequential">
         <classes>
-            <class name="tests.adding_to_cart.AddItemToCartUserIsLoggedIn"></class>
-            <class name="tests.adding_to_cart.AddItemToNotEmptyCart"></class>
-            <class name="tests.adding_to_favorites.AddItemToFavoritesUserIsLoggedIn"></class>
-            <class name="tests.removing_from_cart.RemoveItemFromCartUserIsLoggedIn"></class>
+            <class name="tests.adding_to_cart.AddItemToCartUserIsLoggedInTest"></class>
+            <class name="tests.adding_to_cart.AddItemToNotEmptyCartTest"></class>
+            <class name="tests.adding_to_favorites.AddItemToFavoritesUserIsLoggedInTest"></class>
+            <class name="tests.removing_from_cart.RemoveItemFromCartUserIsLoggedInTest"></class>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -13,7 +13,7 @@ import ui.pages.MainPage;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class AddItemToCartUserIsLoggedIn extends BaseTest {
+public class AddItemToCartUserIsLoggedInTest extends BaseTest {
 
     private final static String EXPECTED_TEXT_FROM_SEARCH = "Поиск по миллионам товаров";
     private final static String ITEM_NAME = "Воздушный фильтр Filtron AK362/1";
