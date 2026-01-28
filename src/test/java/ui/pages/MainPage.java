@@ -34,7 +34,7 @@ public class MainPage extends BaseMainPage {
     }
 
     public boolean isAcceptCookiesButtonVisible() {
-        return acceptCookiesButton.isVisible(0);
+        return acceptCookiesButton.isVisible(1);
     }
 
     public void acceptCookies() {
