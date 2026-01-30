@@ -44,4 +44,8 @@ public abstract class BaseTest {
             logger.info("Browser closed");
         }
     }
+
+    public WebDriver getDriver() {
+        return driver.get();
+    }
 }
