@@ -1,10 +1,9 @@
 package ui.pages;
 
+import io.qameta.allure.Step;
 import lombok.Data;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import ui.components.popups.AccountPopup;
-import ui.components.HeaderComponent;
 import ui.elements.Button;
 
 
@@ -25,6 +24,7 @@ public class MainPage extends BaseMainPage {
         return cartButton.isVisibleWithPageTimeout();
     }
 
+    @Step("Open cart page")
     public CartPage openCartPage() {
         logger.info("Open cart page");
         cartButton.click();

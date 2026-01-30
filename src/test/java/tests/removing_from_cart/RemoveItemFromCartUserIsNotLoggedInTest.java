@@ -1,5 +1,6 @@
 package tests.removing_from_cart;
 
+import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 import ui.pages.CartPage;
@@ -12,7 +13,7 @@ public class RemoveItemFromCartUserIsNotLoggedInTest extends BaseTest {
 
     private final static String ITEM_NAME = "Воздушный фильтр Filtron AK362/1";
 
-    @Test
+    @Test(description = "Verify removing item from not logged user's cart")
     public void test() {
         //1. Open Main page and input in search field item name and open item page
         // (e.g: Воздушный фильтр Filtron AK362/1)
@@ -45,7 +46,6 @@ public class RemoveItemFromCartUserIsNotLoggedInTest extends BaseTest {
         //5. Open Main page
         cartPage.returnToMainPage();
 
-        //
         //Main page is opened. Cart element without digit '1' is visible
         assertEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 0,
                 "Verify if item is added");

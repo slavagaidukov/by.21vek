@@ -11,7 +11,8 @@ public class MainPageSearchTest extends BaseTest {
     private final static String ITEM_NAME_2 = "Салонный фильтр Filtron K1160A-2X (угольный, 2шт)";
 
     private final static String EXPECTED_CATEGORY = "Фильтры топливные Knecht/Mahle";
-    @Test
+
+    @Test(description = "Verify search on main page")
     public void test() {
         //1. Open main page and search by item
         //(e.x.: Топливный фильтр Knecht/Mahle KL169/4D)

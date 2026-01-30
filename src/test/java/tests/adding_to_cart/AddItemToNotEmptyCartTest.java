@@ -1,6 +1,7 @@
 package tests.adding_to_cart;
 
 import data.User;
+import io.qameta.allure.Description;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import tests.BaseTest;
@@ -15,9 +16,9 @@ public class AddItemToNotEmptyCartTest extends BaseTest {
     private final static String ITEM_NAME_1 = "Салонный фильтр Filtron K1078A (угольный)";
     private final static String ITEM_NAME_2 = "Воздушный фильтр Filtron AK362/1";
 
-    private User defaultUser = User.getDefaultUser();
+    private final User defaultUser = User.getDefaultUser();
 
-    @Test
+    @Test(description = "Verify adding item to not empty cart")
     public void test() {
         //Preconditions: Login as any user and add any item to cart
         MainPage mainPage = openApp();

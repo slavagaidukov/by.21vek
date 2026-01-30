@@ -1,5 +1,6 @@
 package ui.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import ui.components.favorite_items_page_component.FavoriteItemsPageItemComponent;
@@ -32,6 +33,7 @@ public class FavoriteItemsPage extends BaseMainPage {
         return noItemsLabel.isVisible();
     }
 
+    @Step("Remove item {item}")
     public void removeItem(String item) {
         createItemComponent(item).remove();
     }

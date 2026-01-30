@@ -1,6 +1,7 @@
 package ui.pages;
 
 import data.User;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import ui.components.HeaderComponent;
@@ -24,6 +25,7 @@ public abstract class BaseMainPage extends BasePage {
         headerComponent = new HeaderComponent(this);
     }
 
+    @Step("Return to main page")
     public MainPage returnToMainPage() {
         getLogger().info("Return to main page");
         logotype.waitElement().click();
@@ -32,6 +34,7 @@ public abstract class BaseMainPage extends BasePage {
         return mainPage;
     }
 
+    @Step("Login as user: {user.email}")
     public void loginAsUser(User user) {
         getLogger().info("Login as user: " + user.getEmail());
         headerComponent.openAccountPopup();

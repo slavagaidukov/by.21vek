@@ -2,6 +2,7 @@ package tests.removing_from_cart;
 
 import data.User;
 import helpers.TestUtils;
+import io.qameta.allure.Description;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import tests.BaseTest;
@@ -16,9 +17,9 @@ public class RemoveItemFromCartUserIsLoggedInTest extends BaseTest {
 
     private final static String ITEM_NAME = "Воздушный фильтр Filtron AK362/1";
 
-    private User defaultUser = User.getDefaultUser();
+    private final User defaultUser = User.getDefaultUser();
 
-    @Test
+    @Test(description = "Verify removing item from logged user's cart")
     public void test() {
         //1. Open Main page and log in as any user
         MainPage mainPage = openApp();

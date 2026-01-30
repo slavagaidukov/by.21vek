@@ -3,7 +3,7 @@
 <suite name="parallel">
     <test name="parallel Tests" parallel="classes" thread-count="2">
         <classes>
-            <class name="tests.adding_to_cart.AddItemToCartUserIsNotLoggerInTest"></class>
+            <class name="tests.adding_to_cart.AddItemToCartUserIsNotLoggedInTest"></class>
             <class name="tests.adding_to_favorites.AddItemToFavoritesUserIsNotLoggedInTest"></class>
             <class name="tests.removing_from_cart.RemoveItemFromCartUserIsNotLoggedInTest"></class>
             <class name="tests.search.MainPageSearchTest"></class>

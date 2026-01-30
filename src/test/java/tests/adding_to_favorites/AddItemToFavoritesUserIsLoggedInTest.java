@@ -1,6 +1,7 @@
 package tests.adding_to_favorites;
 
 import data.User;
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -16,8 +17,9 @@ public class AddItemToFavoritesUserIsLoggedInTest extends BaseTest {
 
     private final static String ITEM = "Воздушный фильтр Filtron AK362/1";
 
-    private User defaultUser = User.getDefaultUser();
-    @Test
+    private final User defaultUser = User.getDefaultUser();
+
+    @Test(description = "Verify adding item to logged user's favorites")
     public void test() {
         //1. Open main page and login as user
         MainPage mainPage = openApp();
@@ -78,7 +80,7 @@ public class AddItemToFavoritesUserIsLoggedInTest extends BaseTest {
         //8. Open cart page
         favoriteItemsPage.getHeaderComponent().searchItemAndOpenItsPage(ITEM);
 
-        //Is is possible to add item to favorites
+        //It is possible to add item to favorites
         Assert.assertTrue(itemPage.isPossibleToAddItemToFavorites(), "Verify possibility to add items to favorites");
 
 

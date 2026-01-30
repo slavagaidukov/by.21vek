@@ -1,5 +1,6 @@
 package tests.adding_to_favorites;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.BaseTest;
@@ -15,7 +16,7 @@ public class AddItemToFavoritesUserIsNotLoggedInTest extends BaseTest {
 
     private final static String ITEM_NAME = "Воздушный фильтр Filtron AP134/10";
 
-    @Test
+    @Test(description = "Verify adding item to not logged user's favorites")
     public void test() {
         //1. Open main page
         MainPage mainPage = openApp();

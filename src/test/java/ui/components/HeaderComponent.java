@@ -1,6 +1,8 @@
 package ui.components;
 
 import helpers.TestUtils;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import ui.components.popups.AccountPopup;
@@ -35,6 +37,7 @@ public class HeaderComponent extends BaseComponent {
         return openItemPage(item);
     }
 
+    @Step("Open item page {item}")
     public ItemPage openItemPage(String item) {
         getPage().getLogger().info("Open item page");
         createItemLink(item).click();
@@ -43,6 +46,7 @@ public class HeaderComponent extends BaseComponent {
         return itemPage;
     }
 
+    @Step("Open account popup")
     public AccountPopup openAccountPopup() {
         getPage().getLogger().info("Open account popup");
         accountButton.click();
@@ -51,6 +55,7 @@ public class HeaderComponent extends BaseComponent {
         return accountPopup;
     }
 
+    @Step("Search by info: {info}")
     public void searchByInfo(String info) {
         getPage().getLogger().info("Search by info: " + info);
         searchEdit.clearUsingKeys();
@@ -58,13 +63,17 @@ public class HeaderComponent extends BaseComponent {
         searchEdit.click();
     }
 
+    @Step("Clear search using control and delete")
     public void clearSearchUsingControlAndDelete() {
+        getPage().getLogger().info("Clear search using control and delete");
         searchEdit.clearUsingKeys();
         searchEdit.waitProperty("value", "");
         clearSearchButton.waitForInvisibility();
     }
 
+    @Step("Clear search using button")
     public void clearSearchUsingButton() {
+        getPage().getLogger().info("Clear search using button");
         clearSearchButton.click();
         searchEdit.waitProperty("value", "");
         clearSearchButton.waitForInvisibility();
@@ -83,6 +92,7 @@ public class HeaderComponent extends BaseComponent {
         return categoryElement.waitElement().getText();
     }
 
+    @Attachment
     public String getTextFromSearch() {
         return searchEdit.getProperty("placeholder");
     }

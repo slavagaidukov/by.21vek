@@ -1,6 +1,7 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -24,6 +25,7 @@ public abstract class BaseTest {
         logger.info("Browser started and maximized");
     }
 
+    @Step("Open main page")
     protected MainPage openApp() {
         driver.get().get(BASE_URL);
         MainPage mainPage = new MainPage(driver.get());

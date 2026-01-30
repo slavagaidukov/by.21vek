@@ -2,6 +2,7 @@ package tests.adding_to_cart;
 
 import data.User;
 import helpers.TestUtils;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import tests.BaseTest;
@@ -18,9 +19,9 @@ public class AddItemToCartUserIsLoggedInTest extends BaseTest {
     private final static String EXPECTED_TEXT_FROM_SEARCH = "Поиск по миллионам товаров";
     private final static String ITEM_NAME = "Воздушный фильтр Filtron AK362/1";
 
-    private User defaultUser = User.getDefaultUser();
+    private final User defaultUser = User.getDefaultUser();
 
-    @Test
+    @Test(description = "Verify adding item to logged user's cart")
     public void test() {
         //1. Login as test user
         MainPage mainPage = openApp();

@@ -1,5 +1,6 @@
 package ui.components.popups;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import ui.components.BaseComponent;
@@ -26,6 +27,7 @@ public class AccountPopup extends BaseComponent {
         super("Account popup", page, By.xpath(".//div[@data-testid='userToolsDropDown']"));
     }
 
+    @Step("Open favorite items page")
     public FavoriteItemsPage openFavoriteItemsPage() {
         getPage().getLogger().info("Open favorite items page");
         favoriteItemsButton.click();
@@ -42,6 +44,7 @@ public class AccountPopup extends BaseComponent {
         return loginPopup;
     }
 
+    @Step("Logout")
     public void logout() {
         getPage().getLogger().info("Logout from account");
         logoutButton.click();

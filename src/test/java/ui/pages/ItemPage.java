@@ -1,5 +1,6 @@
 package ui.pages;
 
+import io.qameta.allure.Step;
 import lombok.Data;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -48,20 +49,23 @@ public class ItemPage extends BaseMainPage{
         return itemNameElement.getText();
     }
 
+    @Step("Add item to cart")
     public void addItemToCart() {
         getLogger().info("Add item to cart");
         addItemToCartButton.click();
         itemInCartButton.waitForVisibility();
     }
 
+    @Step("Open cart page with added item")
     public CartPage openCartPageWithAddedItem() {
-        getLogger().info("Open cart page with added time");
+        getLogger().info("Open cart page with added item");
         itemInCartButton.click();
         CartPage cartPage = new CartPage(getDriver());
         cartPage.assertIsOpened();
         return cartPage;
     }
 
+    @Step("Add item to favorites")
     public void addItemToFavorites() {
         getLogger().info("Add item to favorites");
         favouriteItemsButton.click();

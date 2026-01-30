@@ -1,5 +1,6 @@
 package tests.adding_to_cart;
 
+import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 import ui.pages.CartPage;
@@ -9,11 +10,11 @@ import ui.pages.MainPage;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class AddItemToCartUserIsNotLoggerInTest extends BaseTest {
+public class AddItemToCartUserIsNotLoggedInTest extends BaseTest {
 
     private final static String ITEM_NAME = "Воздушный фильтр Filtron AK362/1";
 
-    @Test
+    @Test(description = "Verify adding item to not logged user's cart")
     public void test() {
         //1. Open main page and search by item
         //(e.x.: Воздушный фильтр Filtron AK362/1)
