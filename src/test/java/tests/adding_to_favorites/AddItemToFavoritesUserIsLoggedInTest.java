@@ -1,7 +1,6 @@
 package tests.adding_to_favorites;
 
 import data.User;
-import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -11,7 +10,7 @@ import ui.pages.FavoriteItemsPage;
 import ui.pages.ItemPage;
 import ui.pages.MainPage;
 
-import static org.testng.Assert.*;
+import static listeners.AllureAssert.*;
 
 public class AddItemToFavoritesUserIsLoggedInTest extends BaseTest {
 
@@ -40,23 +39,23 @@ public class AddItemToFavoritesUserIsLoggedInTest extends BaseTest {
 
         //Item is added to favorites. Star icon become red
         //It is possible to remove item from favorites
-        assertTrue(itemPage.isPossibleToRemoveItemFromFavorites(),
+        verifyTrue(itemPage.isPossibleToRemoveItemFromFavorites(),
                 "Verify if it is possible to remove item from favorites");
 
         //4. Open account popup
         AccountPopup accountPopup = itemPage.getHeaderComponent().openAccountPopup();;
 
         //Account popup is opened. Near the tab "Избранные товары" '1' digit is visible
-        assertEquals(accountPopup.getFavoriteItemsCount(), 1, "Verify count of favorite items");
+        verifyEquals(accountPopup.getFavoriteItemsCount(), 1, "Verify count of favorite items");
 
         //5. Open favorites page
         FavoriteItemsPage favoriteItemsPage = accountPopup.openFavoriteItemsPage();
 
         //Favorites page is opened. Price is visible and the same as at item page. It is possible to remove item from favorites
         assertTrue(favoriteItemsPage.itemExists(ITEM), "Verify item visibility");
-        assertEquals(favoriteItemsPage.getItemPrice(ITEM), price,
+        verifyEquals(favoriteItemsPage.getItemPrice(ITEM), price,
                 "Verify item price on Favorite Items page");
-        assertTrue(favoriteItemsPage.isPossibleToRemoveItemFromFavorites(ITEM),
+        verifyTrue(favoriteItemsPage.isPossibleToRemoveItemFromFavorites(ITEM),
                 "Verify if it is possible to remove item from favorites");
 
         //6. Remove item from favorites
@@ -68,23 +67,20 @@ public class AddItemToFavoritesUserIsLoggedInTest extends BaseTest {
         mainPage.getHeaderComponent().openAccountPopup().openFavoriteItemsPage();
 
         //Favorites list is empty
-        assertTrue(favoriteItemsPage.isNoItemsLabelVisible(), "Verify if items are not visible");
-        assertFalse(favoriteItemsPage.itemExists(ITEM), "Verify if favorites list is empty");
+        verifyTrue(favoriteItemsPage.isNoItemsLabelVisible(), "Verify if items are not visible");
+        verifyTrue(!favoriteItemsPage.itemExists(ITEM), "Verify if favorites list is empty");
 
         //7. Open accounts popup
         favoriteItemsPage.getHeaderComponent().openAccountPopup();
 
         //Near 'Избранные товары' tab is no digits
-        assertTrue(favoriteItemsPage.isNoItemsLabelVisible(), "Verify if no items label is visible");
+        verifyTrue(favoriteItemsPage.isNoItemsLabelVisible(), "Verify if no items label is visible");
 
         //8. Open cart page
         favoriteItemsPage.getHeaderComponent().searchItemAndOpenItsPage(ITEM);
 
         //It is possible to add item to favorites
-        Assert.assertTrue(itemPage.isPossibleToAddItemToFavorites(), "Verify possibility to add items to favorites");
-
-
-        System.out.println("Test passed");
+        verifyTrue(itemPage.isPossibleToAddItemToFavorites(), "Verify possibility to add items to favorites");
     }
 
     @AfterMethod

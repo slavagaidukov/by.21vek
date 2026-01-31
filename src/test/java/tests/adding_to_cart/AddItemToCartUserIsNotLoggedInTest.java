@@ -1,14 +1,12 @@
 package tests.adding_to_cart;
 
-import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 import ui.pages.CartPage;
 import ui.pages.ItemPage;
 import ui.pages.MainPage;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static listeners.AllureAssert.*;
 
 public class AddItemToCartUserIsNotLoggedInTest extends BaseTest {
 
@@ -32,9 +30,9 @@ public class AddItemToCartUserIsNotLoggedInTest extends BaseTest {
         //Page with searched item is opened. The price is visible
         double price = itemPage.getPrice();
 
-        assertTrue(itemPage.isPriceVisible(), "Verify price visibility on item page");
+        verifyTrue(itemPage.isPriceVisible(), "Verify price visibility on item page");
 
-        assertEquals(itemPage.getItemName(), ITEM_NAME, "Verify item name");
+        verifyEquals(itemPage.getItemName(), ITEM_NAME, "Verify item name");
 
         //3. Add item to cart and then open cart page
         itemPage.addItemToCart();
@@ -42,9 +40,9 @@ public class AddItemToCartUserIsNotLoggedInTest extends BaseTest {
         CartPage cartPage = itemPage.openCartPageWithAddedItem();
 
         //Cart page is opened with the one item. The price is the same (step 3)
-        assertEquals(cartPage.getCountOfItemsAddedToCart(), 1, "Verify count of added items");
+        verifyEquals(cartPage.getCountOfItemsAddedToCart(), 1, "Verify count of added items");
 
-        assertEquals(cartPage.getItemPrice(ITEM_NAME), price, "Verify price on cart page");
+        verifyEquals(cartPage.getItemPrice(ITEM_NAME), price, "Verify price on cart page");
 
         //4. Go to main page then return to cart page
         mainPage = cartPage.returnToMainPage();
@@ -52,11 +50,8 @@ public class AddItemToCartUserIsNotLoggedInTest extends BaseTest {
         mainPage.openCartPage();
 
         //Cart page is opened with the one item. The price is the same (step 3)
-        assertEquals(cartPage.getCountOfItemsAddedToCart(), 1, "Verify count of added items");
+        verifyEquals(cartPage.getCountOfItemsAddedToCart(), 1, "Verify count of added items");
 
-        assertEquals(cartPage.getItemPrice(ITEM_NAME), price, "Verify price on cart page");
-
-
-        System.out.println("Test passed");
+        verifyEquals(cartPage.getItemPrice(ITEM_NAME), price, "Verify price on cart page");
     }
 }

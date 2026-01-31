@@ -11,8 +11,7 @@ import ui.pages.CartPage;
 import ui.pages.ItemPage;
 import ui.pages.MainPage;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static listeners.AllureAssert.*;
 
 public class AddItemToCartUserIsLoggedInTest extends BaseTest {
 
@@ -29,7 +28,7 @@ public class AddItemToCartUserIsLoggedInTest extends BaseTest {
         mainPage.loginAsUser(defaultUser);
 
         //User is successfully logged in. Search field with text: 'Поиск по миллионам товаров' is visible
-        assertEquals(mainPage.getHeaderComponent().getTextFromSearch(), EXPECTED_TEXT_FROM_SEARCH, "Verify text into search field");
+        verifyEquals(mainPage.getHeaderComponent().getTextFromSearch(), EXPECTED_TEXT_FROM_SEARCH, "Verify text into search field");
 
         //2. Input in search field item name
         // (e.g: Воздушный фильтр Filtron AK362/1)
@@ -45,9 +44,9 @@ public class AddItemToCartUserIsLoggedInTest extends BaseTest {
         //Page with searched item is opened. The price is visible
         double price = itemPage.getPrice();
 
-        assertTrue(itemPage.isPriceVisible(), "Verify price visibility on item page");
+        verifyTrue(itemPage.isPriceVisible(), "Verify price visibility on item page");
 
-        assertEquals(itemPage.getItemName(), ITEM_NAME, "Verify item name");
+        verifyEquals(itemPage.getItemName(), ITEM_NAME, "Verify item name");
 
         //4. Add item to cart and then open user's cart page
         itemPage.addItemToCart();
@@ -57,9 +56,9 @@ public class AddItemToCartUserIsLoggedInTest extends BaseTest {
         //Cart page is opened with the one item. The price is the same (step 3)
         TestUtils.sleep(3000);
 
-        assertEquals(cartPage.getCountOfItemsAddedToCart(), 1, "Verify count of added items");
+        verifyEquals(cartPage.getCountOfItemsAddedToCart(), 1, "Verify count of added items");
 
-        assertEquals(cartPage.getItemPrice(ITEM_NAME), price, "Verify price on cart page");
+        verifyEquals(cartPage.getItemPrice(ITEM_NAME), price, "Verify price on cart page");
 
         //5. Logout from test user account
         AccountPopup accountPopup = cartPage.getHeaderComponent().openAccountPopup();
@@ -69,7 +68,7 @@ public class AddItemToCartUserIsLoggedInTest extends BaseTest {
 
         cartPage.returnToMainPage();
 
-        assertEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 0,
+        verifyEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 0,
                 "Verify if user is logged out");
         //User was logged out
         //6. Log in as test user and go to the user's cart page
@@ -78,12 +77,9 @@ public class AddItemToCartUserIsLoggedInTest extends BaseTest {
         mainPage.openCartPage();
 
         //The only one item is visible. The price is the same like in step 3 and step 4
-        assertEquals(cartPage.getCountOfItemsAddedToCart(), 1, "Verify count of added items");
+        verifyEquals(cartPage.getCountOfItemsAddedToCart(), 1, "Verify count of added items");
 
-        assertEquals(cartPage.getItemPrice(ITEM_NAME), price, "Verify price on cart page");
-
-
-        System.out.println("Test is passed");
+        verifyEquals(cartPage.getItemPrice(ITEM_NAME), price, "Verify price on cart page");
     }
 
     @AfterMethod

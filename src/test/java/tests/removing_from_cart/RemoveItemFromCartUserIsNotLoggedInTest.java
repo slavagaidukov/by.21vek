@@ -1,13 +1,12 @@
 package tests.removing_from_cart;
 
-import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 import ui.pages.CartPage;
 import ui.pages.ItemPage;
 import ui.pages.MainPage;
 
-import static org.testng.Assert.*;
+import static listeners.AllureAssert.*;
 
 public class RemoveItemFromCartUserIsNotLoggedInTest extends BaseTest {
 
@@ -22,7 +21,7 @@ public class RemoveItemFromCartUserIsNotLoggedInTest extends BaseTest {
         ItemPage itemPage = mainPage.getHeaderComponent().searchItemAndOpenItsPage(ITEM_NAME);
 
         //Page with searched item is opened. The price is visible
-        assertTrue(itemPage.isPriceVisible(), "Verify price visibility on item page");
+        verifyTrue(itemPage.isPriceVisible(), "Verify price visibility on item page");
 
         //2. Add item to cart and open Main page
         itemPage.addItemToCart();
@@ -30,7 +29,7 @@ public class RemoveItemFromCartUserIsNotLoggedInTest extends BaseTest {
         itemPage.returnToMainPage();
 
         //Main page is opened. Cart element with digit '1' is visible
-        assertEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 1,
+        verifyEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 1,
                 "Verify if item is added");
 
         //3. Open cart page
@@ -41,16 +40,13 @@ public class RemoveItemFromCartUserIsNotLoggedInTest extends BaseTest {
         cartPage.removeItem(ITEM_NAME);
 
         //Item was removed from cart
-        assertFalse(cartPage.isItemVisible(ITEM_NAME), "Verify if item was removed");
+        verifyTrue(!cartPage.isItemVisible(ITEM_NAME), "Verify if item was removed");
 
         //5. Open Main page
         cartPage.returnToMainPage();
 
         //Main page is opened. Cart element without digit '1' is visible
-        assertEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 0,
+        verifyEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 0,
                 "Verify if item is added");
-
-
-        System.out.println("Test passed");
     }
 }

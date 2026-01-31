@@ -10,8 +10,7 @@ import ui.pages.CartPage;
 import ui.pages.ItemPage;
 import ui.pages.MainPage;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
+import static listeners.AllureAssert.*;
 
 public class RemoveItemFromCartUserIsLoggedInTest extends BaseTest {
 
@@ -32,7 +31,7 @@ public class RemoveItemFromCartUserIsLoggedInTest extends BaseTest {
         ItemPage itemPage = mainPage.getHeaderComponent().searchItemAndOpenItsPage(ITEM_NAME);
 
         //Page with searched item is opened
-        assertEquals(itemPage.getItemName(), ITEM_NAME, "Verify item name");
+        verifyEquals(itemPage.getItemName(), ITEM_NAME, "Verify item name");
 
         //3. Add item to cart and open Main page
         itemPage.addItemToCart();
@@ -42,7 +41,7 @@ public class RemoveItemFromCartUserIsLoggedInTest extends BaseTest {
         //Main page is opened. Cart element with digit '1' is visible
         TestUtils.sleep(3000);
 
-        assertEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 1,
+        verifyEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 1,
                 "Verify if item is added");
 
         //4. Open cart page
@@ -53,18 +52,15 @@ public class RemoveItemFromCartUserIsLoggedInTest extends BaseTest {
         cartPage.removeItem(ITEM_NAME);
 
         //Item removed. Text 'Ваша корзина пуста' is visible
-        assertFalse(cartPage.isItemVisible(ITEM_NAME), "Verify if item was removed");
+        verifyTrue(!cartPage.isItemVisible(ITEM_NAME), "Verify if item was removed");
 
         //6. Open Main page
         cartPage.returnToMainPage();
 
         //Main page is opened. Cart element without digit '1' is visible
 
-        assertEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 0,
+        verifyEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 0,
                 "Verify if item is added");
-
-
-        System.out.println("Test passed");
     }
 
     @AfterMethod

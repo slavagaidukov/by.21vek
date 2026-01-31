@@ -1,7 +1,6 @@
 package tests.adding_to_cart;
 
 import data.User;
-import io.qameta.allure.Description;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import tests.BaseTest;
@@ -9,7 +8,7 @@ import ui.pages.CartPage;
 import ui.pages.ItemPage;
 import ui.pages.MainPage;
 
-import static org.testng.Assert.*;
+import static listeners.AllureAssert.*;
 
 public class AddItemToNotEmptyCartTest extends BaseTest {
 
@@ -32,7 +31,7 @@ public class AddItemToNotEmptyCartTest extends BaseTest {
         //1. Open Main page
         itemPage.returnToMainPage();
 
-        assertEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 1,
+        verifyEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 1,
                 "Verify if item is added");
 
         //2. Input in search field item name and open item page
@@ -46,7 +45,7 @@ public class AddItemToNotEmptyCartTest extends BaseTest {
         itemPage.returnToMainPage();
 
         //Main page is opened. Cart element with digit '2' is visible
-        assertEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 2,
+        verifyEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 2,
                 "Verify if the second item is added");
 
         //4. Open cart page
@@ -57,18 +56,15 @@ public class AddItemToNotEmptyCartTest extends BaseTest {
         cartPage.removeItem(ITEM_NAME_1);
 
         //Item removed. The other item is visible
-        assertFalse(cartPage.isItemVisible(ITEM_NAME_1), "Verify if item was removed");
-        assertTrue(cartPage.isItemVisible(ITEM_NAME_2), "Verify if item was not removed");
+        verifyTrue(!cartPage.isItemVisible(ITEM_NAME_1), "Verify if item was removed");
+        verifyTrue(cartPage.isItemVisible(ITEM_NAME_2), "Verify if item was not removed");
 
         //6. Open Main page
         cartPage.returnToMainPage();
 
         //Main page is opened. Cart element with digit '1' is visible
-        assertEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 1,
+        verifyEquals(mainPage.getHeaderComponent().getCountOfItemsInCartFromButton(), 1,
                 "Verify if count of items after removing");
-
-
-        System.out.println("Test passed");
     }
 
     @AfterMethod
