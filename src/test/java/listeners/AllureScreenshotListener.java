@@ -96,7 +96,6 @@ public class AllureScreenshotListener implements ITestListener {
                 takeScreenshot(driver, "Errors: " + result.getName());
             }
         } finally {
-            // Очищаем ThreadLocal
             softAssertions.remove();
             testErrors.remove();
         }
